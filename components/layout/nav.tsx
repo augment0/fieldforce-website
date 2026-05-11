@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "motion/react";
 import * as NavMenu from "@radix-ui/react-navigation-menu";
 import { Button, ArrowIcon } from "@/components/ui/button";
 import { topNav } from "@/lib/routes";
-import { MegaMenuColumns } from "@/components/layout/mega-menu";
+import { MegaMenu } from "@/components/layout/mega-menu";
 import { Logo } from "@/components/layout/logo";
 import { cn } from "@/lib/utils";
 
@@ -67,7 +67,7 @@ export function Nav() {
         <NavMenu.Root className="relative mx-auto hidden lg:block" delayDuration={80}>
           <NavMenu.List className="flex list-none items-center gap-1">
             {topNav.map((item) =>
-              item.groups ? (
+              item.menu ? (
                 <NavMenu.Item key={item.href}>
                   <NavMenu.Trigger
                     className={cn(
@@ -87,11 +87,13 @@ export function Nav() {
                   <NavMenu.Content className="left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out md:absolute md:w-auto">
                     <div
                       className={cn(
-                        "min-w-[640px] rounded-[14px] border border-[var(--color-line)] bg-[rgba(17,19,26,0.96)] p-2",
+                        // Wider mega-menus so featured rows + columns + What's New rail fit.
+                        // 980px keeps Industries airy; Platform's featured row uses the full width.
+                        "min-w-[760px] lg:min-w-[980px] rounded-[14px] border border-[var(--color-line)] bg-[rgba(17,19,26,0.96)] p-1",
                         "shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] backdrop-blur-md",
                       )}
                     >
-                      <MegaMenuColumns groups={item.groups} />
+                      <MegaMenu menu={item.menu} />
                     </div>
                   </NavMenu.Content>
                 </NavMenu.Item>
@@ -184,7 +186,7 @@ function MobileSheet({ onClose }: { onClose: () => void }) {
   return (
     <nav aria-label="Mobile" className="flex flex-col">
       {topNav.map((item) =>
-        item.groups ? (
+        item.menu ? (
           <details
             key={item.href}
             className="group border-b border-[var(--color-line-subtle)] py-4"
@@ -200,7 +202,17 @@ function MobileSheet({ onClose }: { onClose: () => void }) {
               </svg>
             </summary>
             <div className="mt-4 flex flex-col gap-3 pl-2">
-              {item.groups.flatMap((g) => g.items).map((sub) => (
+              {item.menu.featured?.items.map((sub) => (
+                <Link
+                  key={sub.href}
+                  href={sub.href}
+                  onClick={onClose}
+                  className="text-[16px] font-medium text-[var(--color-text)] hover:text-[var(--color-accent)]"
+                >
+                  {sub.label}
+                </Link>
+              ))}
+              {item.menu.groups.flatMap((g) => g.items).map((sub) => (
                 <Link
                   key={sub.href}
                   href={sub.href}

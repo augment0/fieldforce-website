@@ -71,7 +71,7 @@ export default function CustomersPage() {
         }
         body="Operators in 23 countries deploy and run their networks on Fieldforce — across 5G, fiber, EV charging, energy, smart cities, and private networks. Here's what they've shipped."
         primaryCta={{ href: "/demo", label: "Book a demo" }}
-        secondaryCta={{ href: "/solutions/telecom", label: "See solutions" }}
+        secondaryCta={{ href: "/industries", label: "Browse industries" }}
       />
 
       <section className="py-[clamp(64px,8vw,112px)]">

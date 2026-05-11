@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function SmartCitiesPage() {
   return (
     <>
-      <Breadcrumb items={[{ href: "/solutions", label: "Solutions" }]} current="Smart Cities" />
+      <Breadcrumb items={[{ href: "/industries", label: "Industries" }]} current="Smart Cities" />
 
       <PageHero
         eyebrow="SOLUTIONS / SMART CITIES"

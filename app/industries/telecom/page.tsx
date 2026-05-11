@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function TelecomPage() {
   return (
     <>
-      <Breadcrumb items={[{ href: "/solutions", label: "Solutions" }]} current="Telecom" />
+      <Breadcrumb items={[{ href: "/industries", label: "Industries" }]} current="Telecom" />
 
       <PageHero
         eyebrow="SOLUTIONS / TELECOM"

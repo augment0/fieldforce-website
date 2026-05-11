@@ -274,7 +274,7 @@ export const blogPosts: BlogPost[] = [
       title: "Modernize distributed energy operations",
       body: "Digitize microgrid deployment and maintenance with configurable workflows and asset intelligence.",
       primaryLabel: "Explore energy solutions",
-      primaryHref: "/solutions/ev-energy",
+      primaryHref: "/industries/ev-energy",
     },
     content: [
       {

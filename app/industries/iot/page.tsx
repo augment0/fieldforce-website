@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function IotPage() {
   return (
     <>
-      <Breadcrumb items={[{ href: "/solutions", label: "Solutions" }]} current="IoT" />
+      <Breadcrumb items={[{ href: "/industries", label: "Industries" }]} current="IoT" />
 
       <PageHero
         eyebrow="SOLUTIONS / IoT"

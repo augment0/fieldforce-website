@@ -59,22 +59,23 @@ export function Hero() {
               className="display-xl"
               transition={{ duration: 0.9, ease: easeOutEmphatic }}
             >
-              Run the networks
+              The AI operations
               <br />
-              of the&nbsp;<span className="grad-text">future</span>.
+              platform for&nbsp;<span className="grad-text">infrastructure</span>.
             </motion.h1>
             <motion.p
               variants={fadeUp}
               className="mt-6 max-w-[56ch] text-[clamp(17px,1.4vw,19px)] leading-[1.55] text-[var(--color-text-2)]"
             >
-              Fieldforce is the AI-native operating system for deploying and operating physical
-              infrastructure — telecom today, EV and IoT next.
+              Fieldforce is how operators deploy and run the physical infrastructure powering
+              the modern world — telecom, EV charging, IoT, private 5G, and smart cities — on
+              one AI-native platform.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
-              <Button href="#demo" size="md" trailingIcon={<ArrowIcon />}>
+              <Button href="/demo" size="md" trailingIcon={<ArrowIcon />}>
                 Book a demo
               </Button>
-              <Button href="#platform" variant="ghost" trailingIcon={<ArrowIcon />}>
+              <Button href="/platform" variant="ghost" trailingIcon={<ArrowIcon />}>
                 See the platform
               </Button>
             </motion.div>

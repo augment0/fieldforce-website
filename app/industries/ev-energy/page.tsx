@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function EvEnergyPage() {
   return (
     <>
-      <Breadcrumb items={[{ href: "/solutions", label: "Solutions" }]} current="EV & Energy" />
+      <Breadcrumb items={[{ href: "/industries", label: "Industries" }]} current="EV & Energy" />
 
       <PageHero
         eyebrow="SOLUTIONS / EV & ENERGY"

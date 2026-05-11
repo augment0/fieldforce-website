@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PrivateNetworksPage() {
   return (
     <>
-      <Breadcrumb items={[{ href: "/solutions", label: "Solutions" }]} current="Private Networks" />
+      <Breadcrumb items={[{ href: "/industries", label: "Industries" }]} current="Private Networks" />
 
       <PageHero
         eyebrow="SOLUTIONS / PRIVATE NETWORKS"
