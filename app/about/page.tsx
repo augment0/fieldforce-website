@@ -9,17 +9,17 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Founded in 2014, Fieldforce builds the operating system for physical infrastructure.",
+  title: "Company",
+  description: "Meet the Fieldforce leadership and advisory team powering next-generation infrastructure deployment.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="ABOUT"
-        title={<>We're writing the software layer <span className="text-[var(--color-text-2)]">for the world's networks.</span></>}
-        body="Fieldforce was founded in 2014 in Arlington, Virginia. Today we run from three offices across two continents, and the platform manages $10B+ in network assets across 23 countries."
+        eyebrow="COMPANY"
+        title={<>Enabling efficient deployment of <span className="text-[var(--color-text-2)]">next-generation infrastructure.</span></>}
+        body="Fieldforce was founded to simplify the complex, costly work of deploying and managing modern infrastructure. Our team has decades of hands-on network operations experience across operators, vendors, and service providers."
         primaryCta={{ href: "/careers", label: "Open roles" }}
         secondaryCta={{ href: "/demo", label: "Book a demo" }}
       />
@@ -37,13 +37,13 @@ export default function AboutPage() {
         <div className="shell shell-narrow">
           <Reveal>
             <Eyebrow>OUR STORY</Eyebrow>
-            <h2 className="display-lg mt-5">Started in telecom. <span className="text-[var(--color-text-2)]">Built for the next decade.</span></h2>
+            <h2 className="display-lg mt-5">Built from the field up. <span className="text-[var(--color-text-2)]">Designed for operators under pressure.</span></h2>
             <p className="mt-6 max-w-[60ch] text-[16px] leading-[1.65] text-[var(--color-text-2)]">
-              Fieldforce began as a tool to digitize 5G site builds for one
-              operator. By 2018, six. By 2022, more than fifty operators
-              across telecom, EV, and IoT. Through it all, the bet was the
-              same: the company that builds the operating system for physical
-              infrastructure wins the next decade.
+              Fieldforce is the only end-to-end platform focused on streamlining
+              the full infrastructure lifecycle, from site selection and
+              acquisition to deployment and ongoing maintenance. As a
+              bootstrapped company, we iterate fast and stay obsessively close
+              to customer outcomes.
             </p>
           </Reveal>
         </div>
@@ -70,25 +70,99 @@ export default function AboutPage() {
         </div>
       </SectionShell>
 
-      <SectionShell>
+      <SectionShell id="leadership">
         <div className="shell">
           <Reveal>
             <header className="mb-12 max-w-[680px]">
               <Eyebrow>LEADERSHIP</Eyebrow>
-              <h2 className="display-lg mt-5">The team building this.</h2>
+              <h2 className="display-lg mt-5">About the team.</h2>
               <p className="mt-5 max-w-[56ch] text-[16px] leading-[1.6] text-[var(--color-text-2)]">
-                Engineers who've shipped network software, telecom operators
-                who've run real networks, and product designers who've spent
-                more time on rooftops than at desks.
+                Our leadership combines deep domain expertise in telecom,
+                enterprise operations, and product delivery. The team is
+                focused on making infrastructure deployment easier, faster, and
+                more reliable for every customer.
               </p>
             </header>
           </Reveal>
           <TeamGrid
             members={[
-              { name: "Shahzaib Khan",  role: "CEO & Founder",         initials: "SK", bio: "Former network operations engineer. Started Fieldforce in 2014." },
-              { name: "Pat Lin",        role: "Chief Product Officer", initials: "PL", bio: "Product at Sitetracker, then Linear. Joined to bring agentic ops to infrastructure." },
-              { name: "Rana Mehta",     role: "VP Engineering",        initials: "RM", bio: "Built the work-order graph that runs every Fieldforce deployment." },
-              { name: "Sara Olwen",     role: "VP Customer Success",   initials: "SO", bio: "Six years at IFS scaling tier-1 telecom rollouts." },
+              {
+                name: "Basit Malik",
+                role: "Founder & CEO",
+                initials: "BM",
+                bio: "Founder and CEO of Fieldforce, focused on simplifying infrastructure deployment end-to-end.",
+                photoSrc: "/images/team/basit-malik.png",
+              },
+              {
+                name: "Mustajab Shaukat",
+                role: "Sales",
+                initials: "MS",
+                bio: "Leads customer-facing growth and commercial execution across Fieldforce deployments.",
+                photoSrc: "/images/team/mustajab-shaukat.png",
+              },
+              {
+                name: "Shaukat Sarwar",
+                role: "Engineering",
+                initials: "SS",
+                bio: "Leads engineering delivery with a focus on product reliability and operational scale.",
+                photoSrc: "/images/team/shaukat-sarwar.png",
+              },
+            ]}
+          />
+        </div>
+      </SectionShell>
+
+      <SectionShell id="advisory-board" tone="tight">
+        <div className="shell">
+          <Reveal>
+            <header className="mb-12 max-w-[680px]">
+              <Eyebrow>ADVISORY BOARD</Eyebrow>
+              <h2 className="display-lg mt-5">Operators who guide the roadmap.</h2>
+              <p className="mt-5 max-w-[56ch] text-[16px] leading-[1.6] text-[var(--color-text-2)]">
+                The advisory board brings decades of global telecom and software
+                leadership to ensure Fieldforce stays grounded in real-world
+                operator needs.
+              </p>
+            </header>
+          </Reveal>
+          <TeamGrid
+            members={[
+              {
+                name: "Zia Chishti",
+                role: "Founder Afiniti/TRG",
+                initials: "ZC",
+                photoSrc: "/images/team/zia-chishti.jpg",
+              },
+              {
+                name: "Dave Flessas",
+                role: "Global Operations Executive",
+                initials: "DF",
+                photoSrc: "/images/team/dave-flessas.jpg",
+              },
+              {
+                name: "Limond Grindstaff",
+                role: "Global Telecom CTO",
+                initials: "LG",
+                photoSrc: "/images/team/limond-grindstaff.jpg",
+              },
+              {
+                name: "Zouhair Khaliq",
+                role: "Global Telecom CEO",
+                initials: "ZK",
+                photoSrc: "/images/team/zouhair-khaliq.jpg",
+              },
+              {
+                name: "Noah Kindler",
+                role: "Head of Software @ 2 unicorns",
+                initials: "NK",
+                photoSrc: "/images/team/noah-kindler.jpg",
+              },
+              {
+                name: "Alex Shalaby",
+                role: "Global Telecom CEO",
+                initials: "AS",
+                photoSrc: "/images/team/alex-shalaby.jpg",
+              },
             ]}
           />
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { fadeUp, fadeUpStagger } from "@/lib/motion";
 
@@ -8,6 +9,8 @@ export type TeamMember = {
   role: string;
   initials: string;
   bio?: string;
+  photoSrc?: string;
+  photoAlt?: string;
 };
 
 export function TeamGrid({ members }: { members: TeamMember[] }) {
@@ -26,9 +29,21 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
           variants={fadeUp}
           className="rounded-[14px] border border-[var(--color-line)] bg-[var(--color-bg-raised)] p-6"
         >
-          <div className="grid h-14 w-14 place-items-center rounded-full border border-[var(--color-line)] bg-[linear-gradient(135deg,var(--color-bg-elevated),var(--color-bg-raised))] font-display text-[14px] font-semibold tracking-[0.04em] text-[var(--color-accent)]">
-            {m.initials}
-          </div>
+          {m.photoSrc ? (
+            <div className="relative h-16 w-16 overflow-hidden rounded-full border border-[var(--color-line)] bg-[var(--color-bg-elevated)]">
+              <Image
+                src={m.photoSrc}
+                alt={m.photoAlt ?? `${m.name} profile photo`}
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            </div>
+          ) : (
+            <div className="grid h-14 w-14 place-items-center rounded-full border border-[var(--color-line)] bg-[linear-gradient(135deg,var(--color-bg-elevated),var(--color-bg-raised))] font-display text-[14px] font-semibold tracking-[0.04em] text-[var(--color-accent)]">
+              {m.initials}
+            </div>
+          )}
           <h3 className="mt-5 text-[17px] font-semibold tracking-[-0.01em]">{m.name}</h3>
           <p className="mt-1 font-mono text-[11.5px] tracking-[0.04em] text-[var(--color-text-3)]">
             {m.role}
