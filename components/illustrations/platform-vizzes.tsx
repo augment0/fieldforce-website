@@ -25,9 +25,25 @@
  *   VizMobileCV         · /platform/mobile     (on-device CV)
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { drawIn, easeOutEmphatic, fadeUp, fadeUpStagger } from "@/lib/motion";
+
+/* ─────────────────────────────────────────────────────────────
+   Hydration-safe reduced-motion check.
+   `useReducedMotion` from motion returns `null` on the server and
+   the actual boolean synchronously on the client's first render,
+   which causes structural hydration mismatches when used to gate
+   JSX (e.g. `{!reduced && <element/>}`). This wrapper returns
+   `false` until after mount, so server output and client first
+   render always agree.
+   ───────────────────────────────────────────────────────────── */
+function useReducedMotionSafe(): boolean {
+  const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? reduced === true : false;
+}
 
 /* ─────────────────────────────────────────────────────────────
    Shared atoms — kept private to this module so the viz file
@@ -112,7 +128,7 @@ const SITE_LANES: Array<{ key: string; label: string; events: LaneEvent[] }> = [
 ];
 
 export function VizSiteTimeline() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const [hover, setHover] = useState<string | null>(null);
 
   const laneH = 86;
@@ -311,7 +327,7 @@ const SECTORS: Array<{ id: string; label: string; leaves: Leaf[] }> = [
 ];
 
 export function VizAssetHierarchy() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const [hover, setHover] = useState<string | null>(null);
   const W = 600;
   const H = 360;
@@ -565,7 +581,7 @@ const WORK_CARDS = [
 ];
 
 export function VizWorkflowBoard() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const W = 600;
   const H = 340;
   const colW = (W - 32) / WORK_COLUMNS.length;
@@ -755,7 +771,7 @@ export function VizWorkflowBoard() {
    ───────────────────────────────────────────────────────────── */
 
 export function VizEvidenceInspect() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return (
     <div className="grid grid-cols-1 gap-3 lg:grid-cols-[1.55fr_1fr]">
       {/* photo with overlays */}
@@ -931,7 +947,7 @@ const INT_RIGHT = [
 ];
 
 export function VizIntegrationsBus() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const W = 640;
   const H = 360;
   const cx = W / 2;
@@ -1115,7 +1131,7 @@ const SEC_LAYERS = [
 ];
 
 export function VizSecurityStack() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const W = 600;
   const H = 380;
   const layerH = 50;
@@ -1214,7 +1230,7 @@ const MESH = [
 ];
 
 export function VizAgentMesh() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const W = 600;
   const H = 360;
   const cx = W / 2;
@@ -1367,7 +1383,7 @@ const KPIS = [
 ];
 
 export function VizExecutiveDash() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return (
     <div className="space-y-3">
       {/* KPI strip */}
@@ -1546,7 +1562,7 @@ const FORECAST_BUBBLES = [
 ];
 
 export function VizForecastMatrix() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const W = 600;
   const H = 320;
   const padL = 56;
@@ -1673,7 +1689,7 @@ const SYNC_QUEUE: QueueItem[] = [
 ];
 
 export function VizMobileSync() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1.1fr]">
       {/* phone */}
@@ -1770,7 +1786,7 @@ export function VizMobileSync() {
    ───────────────────────────────────────────────────────────── */
 
 export function VizMobileCV() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1.1fr]">
       {/* phone with photo + boxes */}
