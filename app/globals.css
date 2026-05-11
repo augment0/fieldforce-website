@@ -1,0 +1,181 @@
+/* Fieldforce — global styles
+   Tailwind v4 with @theme tokens. One source of truth for the design system. */
+
+@import "tailwindcss";
+
+/* ─── Design tokens ────────────────────────────────────────── */
+
+@theme {
+  /* surfaces */
+  --color-bg-base:      #08090C;
+  --color-bg-raised:    #11131A;
+  --color-bg-elevated:  #181A22;
+  --color-bg-inset:     #06070A;
+
+  /* lines */
+  --color-line-subtle:  rgba(255, 255, 255, 0.06);
+  --color-line:         rgba(255, 255, 255, 0.09);
+  --color-line-strong:  rgba(255, 255, 255, 0.14);
+
+  /* text */
+  --color-text:         #F2F4F7;
+  --color-text-2:       #A0A6B0;
+  --color-text-3:       #6A6F7A;
+  --color-text-4:       #3F4350;
+
+  /* accents */
+  --color-accent:       #6FE4D9;
+  --color-accent-soft:  #8AECDF;
+  --color-accent-deep:  #2DD4BF;
+  --color-indigo:       #7C7BFF;
+  --color-warn:         #F5B042;
+  --color-danger:       #F87171;
+
+  --color-accent-glow:  rgba(111, 228, 217, 0.18);
+  --color-indigo-glow:  rgba(124, 123, 255, 0.16);
+
+  /* radii */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+
+  /* fonts (Geist via next/font sets the CSS variables) */
+  --font-sans:  var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:  var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* easings */
+  --ease-out-emphatic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-snappy:   cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ─── Base ────────────────────────────────────────────────── */
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-bg-base);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent-glow);
+    color: var(--color-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─── Component utilities ─────────────────────────────────── */
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 32px;
+  }
+  @media (max-width: 720px) { .shell { padding-inline: 20px; } }
+  .shell-narrow { max-width: 760px; }
+
+  .display-xl {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(44px, 7.4vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .display-lg {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    margin: 0;
+  }
+
+  .grad-text {
+    background: linear-gradient(135deg, #F2F4F7 0%, #6FE4D9 110%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--color-line-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line-subtle) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+}
+
+/* ─── SVG-driven keyframes referenced by inline animations ── */
+
+@keyframes node-pulse {
+  0%, 100% { opacity: var(--node-base, 0.55); transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.25); }
+}
+@keyframes agent-pulse {
+  0%   { transform: scale(0.6); opacity: 0.55; }
+  80%  { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes draw-path {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes signal-arc {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  20%  { opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes iot-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.85); }
+  50%      { opacity: 1; transform: scale(1.1); }
+}
+@keyframes led-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+@keyframes dot-pulse {
+  0%   { transform: scale(0.6); opacity: 0.55; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Radix accordion expand/collapse — content height is provided by Radix as
+   --radix-accordion-content-height. */
+@keyframes accDown {
+  from { height: 0; opacity: 0; }
+  to   { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accUp {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to   { height: 0; opacity: 0; }
+}
