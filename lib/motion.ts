@@ -3,10 +3,12 @@
  * Import these into Motion components to keep the motion language consistent.
  */
 
-import type { Transition, Variants } from "motion/react";
+import type { Variants } from "motion/react";
 
-export const easeOutEmphatic: Transition["ease"] = [0.16, 1, 0.3, 1];
-export const easeOutSnappy:    Transition["ease"] = [0.2, 0.8, 0.2, 1];
+type CubicBezier = [number, number, number, number];
+
+export const easeOutEmphatic: CubicBezier = [0.16, 1, 0.3, 1];
+export const easeOutSnappy:    CubicBezier = [0.2, 0.8, 0.2, 1];
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 14 },

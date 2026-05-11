@@ -6,7 +6,7 @@ import { fadeUp, fadeUpStagger } from "@/lib/motion";
 
 export type Compliance = {
   title: string;
-  body: string;
+  body: React.ReactNode;
   tag?: string;
   icon?: React.ReactNode;
 };
